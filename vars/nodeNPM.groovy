@@ -33,10 +33,7 @@ def call(Map configMap){
                 steps{
                     script{
                         sh '''
-                            
                             npm install
-                            npm run build
-                            ls -ltr
                         '''
                     }
                 }
