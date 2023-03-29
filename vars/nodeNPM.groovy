@@ -15,12 +15,12 @@ def call(Map configMap){
             REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_REPO}"
             CI=false
         }
-        options{
+        /* options{
             timeout(time: 1, unit: 'HOURS')
             disableConcurrentBuilds()
             skipDefaultCheckout()
             timestamps()
-        }
+        } */
         stages{
             stage('Clone'){
                 steps{
