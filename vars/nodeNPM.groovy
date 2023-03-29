@@ -1,7 +1,7 @@
 #!groovy
 
 def call(Map configMap){
-    echo "Pipeline started"
+    echo "Pipeline started just now"
     def pomMap = [:]
     pipeline{
         /* agent {
