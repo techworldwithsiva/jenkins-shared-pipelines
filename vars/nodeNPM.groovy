@@ -4,7 +4,7 @@ def call(Map configMap){
     echo "Pipeline started just now"
     def pomMap = [:]
     pipeline{
-        agent none
+        agent any
         environment{
             AWS_ACCOUNT_ID="084767242532"
             REGION="ap-southeast-1"
