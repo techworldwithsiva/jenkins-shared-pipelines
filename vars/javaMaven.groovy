@@ -5,7 +5,7 @@ def call(Map configMap){
     def pomMap = [:]
     def nexusUploadFile
     pipeline{
-        agent {label 'JENKINS_SLAVE'}
+        agent {label 'master'}
         environment{
             AWS_ACCOUNT_ID="084767242532"
             REGION="ap-southeast-1"
