@@ -10,7 +10,7 @@ def call(Map configMap){
             REGION="ap-south-1"
             IMAGE_REPO="hello-world-web"
             IMAGE_TAG="latest"
-            REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_REPO}:${IMAGE_TAG}"
+            REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_REPO}"
             CI=false
         }
         /* options{
