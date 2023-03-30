@@ -46,12 +46,7 @@ def call(Map configMap){
                 }
             }
         }
-        withAWS(credentials: 'My AWS Credentials', region: "${env.AWS_REGION}") {
-                    sh """
-                        aws eks update-kubeconfig --name my-eks-cluster
-                        kubectl apply -f my-deployment.yaml
-                    """
-                }
+       
         stage('Image push to ECR'){
             steps{
                 script{
