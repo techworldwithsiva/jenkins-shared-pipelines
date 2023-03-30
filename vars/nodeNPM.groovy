@@ -63,9 +63,12 @@ def call(Map configMap){
         stage('Deploy'){
             steps{
                 script{
-                    sh '''
-                        kubectl apply -f manifest.yaml
-                    '''
+                    withAWS(credentials: 'aws-auth', region: "${REGION}") {
+                        sh """
+                         aws eks update-kubeconfig --name toptal-cluster
+                         kubectl get nodes
+                        """
+                    }
                 }
             }
         }
