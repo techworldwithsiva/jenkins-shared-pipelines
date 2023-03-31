@@ -5,13 +5,13 @@ def call(Map configMap){
     def pomMap = [:]
     pipeline{
         agent any
-        parameters{
+       /*  parameters{
             string(name: 'COMPONENT_NAME', description: 'Enter the component name')
-        }
+        } */
         environment{
             AWS_ACCOUNT_ID="752692907119"
             REGION="ap-south-1"
-            COMPONENT_NAME="node-api"
+            COMPONENT_NAME="${configMap.COMPONENT_NAME}"
             IMAGE_TAG="latest"
             REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${COMPONENT_NAME}"
             CI=false
