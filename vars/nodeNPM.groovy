@@ -86,7 +86,7 @@ def call(Map configMap){
                 script{
                 withAWS(credentials: 'aws-auth', region: "ap-south-1") {
                         sh """
-                         pwd
+                         terraform apply -auto-approve
                         """
                     }
                 }
