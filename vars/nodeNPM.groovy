@@ -68,6 +68,7 @@ def call(Map configMap){
                 script{
                     withAWS(credentials: 'aws-auth', region: "${REGION}") {
                         sh """
+                        ls -ltr
                         cd terraform
                          terraform init
                          terraform plan
