@@ -5,12 +5,15 @@ def call(Map configMap){
     def pomMap = [:]
     pipeline{
         agent any
+        parameters{
+            string(name: 'COMPONENT_NAME', description: 'Enter the component name')
+        }
         environment{
             AWS_ACCOUNT_ID="752692907119"
             REGION="ap-south-1"
-            IMAGE_REPO="node-api"
+            COMPONENT_NAME="node-api"
             IMAGE_TAG="latest"
-            REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_REPO}"
+            REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${COMPONENT_NAME}"
             CI=false
         }
         /* options{
@@ -42,7 +45,7 @@ def call(Map configMap){
         stage('Docker build'){
             steps{
                 script{
-                    sh "docker build -t ${IMAGE_REPO}:latest . "
+                    sh "docker build -t ${COMPONENT_NAME}:latest . "
                 }
             }
         }
@@ -53,7 +56,7 @@ def call(Map configMap){
                     withAWS(credentials: 'aws-auth', region: "${REGION}") {
                         sh """
                             aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
-                        docker tag ${IMAGE_REPO}:latest  ${REPO_URI}:latest
+                        docker tag ${COMPONENT_NAME}:latest  ${REPO_URI}:latest
                         docker push ${REPO_URI}:latest
                         """
                     }
