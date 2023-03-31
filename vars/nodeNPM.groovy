@@ -63,14 +63,29 @@ def call(Map configMap){
                 }
             }
         }
-        stage('Deploy'){
+        stage('Terraform Plan'){
             steps{
                 script{
                     withAWS(credentials: 'aws-auth', region: "${REGION}") {
                         sh """
-                         aws eks update-kubeconfig --name toptal-cluster
-                         kubectl get nodes
-                         kubectl --force  apply -f manifest.yaml
+                        cd terraform
+                         terraform init
+                         terraform plan
+                        """
+                    }
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+            steps {
+                script{
+                withAWS(credentials: 'aws-auth', region: "ap-south-1") {
+                        sh """
+                         pwd
                         """
                     }
                 }
