@@ -70,7 +70,7 @@ def call(Map configMap){
                         sh """
                          aws eks update-kubeconfig --name toptal-cluster
                          kubectl get nodes
-                         kubectl apply -f manifest.yaml
+                         kubectl apply -f --force manifest.yaml
                         """
                     }
                 }
