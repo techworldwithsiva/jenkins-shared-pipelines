@@ -8,7 +8,7 @@ def call(Map configMap){
         environment{
             AWS_ACCOUNT_ID="752692907119"
             REGION="ap-south-1"
-            IMAGE_REPO="hello-world-web"
+            IMAGE_REPO="node-api"
             IMAGE_TAG="latest"
             REPO_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_REPO}"
             CI=false
